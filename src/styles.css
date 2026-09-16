@@ -270,6 +270,21 @@
   }
 }
 
+/* For large above-the-fold images: moves into place but never starts hidden,
+   so the photo is visible (and counts as painted) from the first frame. */
+@keyframes settle-in {
+  from {
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@utility animate-settle-in {
+  animation: settle-in var(--duration-bloom) var(--ease-soft) both;
+}
+
 @utility animate-fade-rise {
   animation: fade-rise var(--duration-bloom) var(--ease-soft) both;
 }

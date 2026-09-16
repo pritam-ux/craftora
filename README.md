@@ -22,6 +22,13 @@ hearts, sprigs of baby's breath, and "Craftora" in script above a letter-spaced
 - **Marks** — the bow, heart, sprig, header lockup and full crest are SVG
   components in [src/components/brand.tsx](src/components/brand.tsx); the
   favicon reuses the same bow geometry.
+- **Photos** — import with `?photo` and render with `<Photo>`
+  ([src/components/Photo.tsx](src/components/Photo.tsx)). The build emits AVIF
+  and WebP at 480/800/1280px with a JPEG fallback (vite-imagetools), and a
+  `?lqip` import gives a ~300-byte blurred placeholder. The first photo on `/`
+  and `/about` is preloaded from `index.html` by a plugin in
+  [vite.config.ts](vite.config.ts); if you change a page's main photo or its
+  `sizes`, update that plugin's route list too.
 - **Motion** — shared easing/duration tokens drive every animation, and the
   whole system collapses under `prefers-reduced-motion`. Decorative layers
   (drifting petals, sparkles, aurora) are removed outright for those visitors.

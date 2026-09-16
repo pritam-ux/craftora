@@ -1,16 +1,16 @@
 import { MessageCircle } from "lucide-react";
+import { Photo } from "@/components/Photo";
 import { formatPrice, whatsappOrderLink, type Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="hover-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
       <div className="relative aspect-square overflow-hidden">
-        <img
-          src={product.image}
+        <Photo
+          picture={product.image}
+          placeholder={product.placeholder}
           alt={product.name}
-          loading="lazy"
-          width={1024}
-          height={1024}
+          sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
           className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
         />
         {/* Warm wash that fades in with the zoom, so the image never feels flat. */}

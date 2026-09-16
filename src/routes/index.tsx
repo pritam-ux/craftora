@@ -12,7 +12,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { CraftoraCrest, OutlineHeart, RibbonBow } from "@/components/brand";
 import { CountUp, PetalField, Sparkles, Tilt } from "@/components/motion";
 import { products, whatsappOrderLink } from "@/lib/products";
-import heroBouquet from "@/assets/hero-bouquet.jpg";
+import { Photo } from "@/components/Photo";
+import heroBouquet from "@/assets/hero-bouquet.jpg?photo";
+import heroBouquetBlur from "@/assets/hero-bouquet.jpg?lqip";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,15 +122,16 @@ function HomePage() {
               </a>
             </div>
           </div>
-          <div className="animate-bloom-in relative [animation-delay:200ms]">
+          <div className="animate-settle-in relative">
             {/* Leans towards the pointer; a bouquet in a vase never sits still. */}
             <Tilt max={6}>
               <div className="animate-sway-soft">
-                <img
-                  src={heroBouquet}
+                <Photo
+                  picture={heroBouquet}
+                  placeholder={heroBouquetBlur}
                   alt="Handwoven woolen bouquet with terracotta and cream crocheted flowers wrapped in kraft paper"
-                  width={1280}
-                  height={1024}
+                  sizes="(min-width: 1152px) 552px, (min-width: 768px) 48vw, 100vw"
+                  priority
                   className="w-full rounded-[2.5rem] shadow-warm"
                 />
               </div>

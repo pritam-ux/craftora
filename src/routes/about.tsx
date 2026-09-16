@@ -3,7 +3,9 @@ import { Reveal } from "@/components/Reveal";
 import { BabysBreath, OutlineHeart } from "@/components/brand";
 import { whatsappOrderLink } from "@/lib/products";
 import { MessageCircle } from "lucide-react";
-import aboutCraft from "@/assets/about-craft.jpg";
+import { Photo } from "@/components/Photo";
+import aboutCraft from "@/assets/about-craft.jpg?photo";
+import aboutCraftBlur from "@/assets/about-craft.jpg?lqip";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -83,16 +85,18 @@ function AboutPage() {
             Say hello on WhatsApp
           </a>
         </Reveal>
-        <Reveal delay={150} variant="right">
-          <img
-            src={aboutCraft}
+        {/* Top of the page on desktop, so it loads straight away and slides in
+            without first being held invisible. */}
+        <div className="animate-settle-in">
+          <Photo
+            picture={aboutCraft}
+            placeholder={aboutCraftBlur}
             alt="Hands crocheting a woolen flower at a cozy craft table with yarn and crochet hooks"
-            loading="lazy"
-            width={1280}
-            height={1024}
+            sizes="(min-width: 1152px) 552px, (min-width: 768px) 48vw, 100vw"
+            priority
             className="w-full rounded-[2.5rem] shadow-warm transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.02]"
           />
-        </Reveal>
+        </div>
       </div>
 
       <div className="mt-24">
