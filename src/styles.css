@@ -1,0 +1,578 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@source "../index.html";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Craftora design system — taken from the @craftora07 profile mark:
+ * a soft lilac tile, a fine line-art ribbon bow, little outlined hearts,
+ * sprigs of baby's breath, and "Craftora" in flowing script above
+ * letter-spaced "MADE WITH LOVE".
+ *
+ * Lilac ground, violet ink, blush as the second accent.
+ * Parisienne for the wordmark, Cormorant Garamond for headings, Karla for body.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-lilac: var(--lilac);
+  --color-lilac-foreground: var(--lilac-foreground);
+  --color-blush: var(--blush);
+  --color-blush-foreground: var(--blush-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-script: "Parisienne", "Segoe Script", cursive;
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Karla", "Segoe UI", sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.978 0.01 311.2); /* #faf6fd — lilac white */
+  --foreground: oklch(0.329 0.047 303.3); /* #3a2f49 — script ink */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.329 0.047 303.3);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.329 0.047 303.3);
+  --primary: oklch(0.499 0.109 302.3); /* #6f5296 — violet */
+  --primary-foreground: oklch(0.99 0.004 314.8);
+  --secondary: oklch(0.939 0.022 309.6);
+  --secondary-foreground: oklch(0.384 0.07 301.1);
+  --muted: oklch(0.946 0.019 309.8);
+  --muted-foreground: oklch(0.507 0.044 305.1);
+  --accent: oklch(0.897 0.036 308.8);
+  --accent-foreground: oklch(0.358 0.071 300.9);
+  --lilac: oklch(0.866 0.046 309.9); /* #dccbea — the profile tile */
+  --lilac-foreground: oklch(0.384 0.07 301.1);
+  --blush: oklch(0.895 0.038 345.3); /* #f0d3e2 — the little hearts */
+  --blush-foreground: oklch(0.483 0.076 347.9);
+  --destructive: oklch(0.547 0.145 10.6);
+  --destructive-foreground: oklch(0.99 0.004 314.8);
+  --border: oklch(0.906 0.029 310.1);
+  --input: oklch(0.906 0.029 310.1);
+  --ring: oklch(0.499 0.109 302.3);
+  --chart-1: oklch(0.499 0.109 302.3);
+  --chart-2: oklch(0.693 0.097 311.2);
+  --chart-3: oklch(0.784 0.072 340.3);
+  --chart-4: oklch(0.73 0.075 263.2);
+  --chart-5: oklch(0.807 0.067 303.7);
+  --shadow-warm: 0 18px 45px -18px color-mix(in oklab, var(--primary) 38%, transparent);
+  --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--primary) 22%, transparent);
+  --shadow-lift: 0 26px 55px -22px color-mix(in oklab, var(--primary) 32%, transparent);
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 12%, transparent),
+    0 20px 50px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+
+  /* Motion — soft, hand-made easing. Nothing snaps; everything settles. */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-petal: cubic-bezier(0.34, 1.32, 0.64, 1);
+  --duration-quick: 250ms;
+  --duration-settle: 500ms;
+  --duration-bloom: 800ms;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 22%, transparent);
+  }
+}
+
+/* ---- Brand type ---- */
+@utility font-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+/* The "MADE WITH LOVE" lockup line from the profile mark. */
+@utility tracking-mark {
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+/* ---- Scroll reveal ----
+   Variants describe how a block enters: rise (default), bloom (a petal
+   unfolding), left/right (drift in from the side), fade (copy only). */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity var(--duration-bloom) var(--ease-soft),
+    transform var(--duration-bloom) var(--ease-soft);
+  will-change: opacity, transform;
+}
+
+.reveal-rise {
+  transform: translateY(28px);
+}
+
+.reveal-bloom {
+  transform: scale(0.94) rotate(-1.2deg);
+  transform-origin: center bottom;
+}
+
+.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Gentle float for decorative blobs ---- */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@utility animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+/* ---- Marquee strip ---- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+/* Let a curious visitor stop and read the strip. */
+.marquee-track:hover .animate-marquee,
+.marquee-track:focus-within .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ---- Entrance animations ---- */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* A flower opening: a touch of scale and a hand-made tilt that settles. */
+@keyframes bloom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Page/route change: the new view breathes in rather than cutting. */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-fade-rise {
+  animation: fade-rise var(--duration-bloom) var(--ease-soft) both;
+}
+
+@utility animate-fade-in {
+  animation: fade-in var(--duration-settle) var(--ease-soft) both;
+}
+
+@utility animate-bloom-in {
+  animation: bloom-in var(--duration-bloom) var(--ease-petal) both;
+}
+
+@utility animate-pop-in {
+  animation: pop-in var(--duration-settle) var(--ease-petal) both;
+}
+
+@utility animate-page-in {
+  animation: page-in 450ms var(--ease-soft) both;
+}
+
+/* ---- Ambient motion ---- */
+/* Barely-there sway, like a bouquet resting in a vase. */
+@keyframes sway-soft {
+  0%,
+  100% {
+    transform: rotate(-0.8deg) translateY(0);
+  }
+  50% {
+    transform: rotate(0.8deg) translateY(-6px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.75;
+  }
+}
+
+/* The little outlined heart from the profile mark, beating. */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.18);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+/* The ribbon bow, stirring the way satin does. */
+@keyframes ribbon-sway {
+  0%,
+  100% {
+    transform: rotate(-2.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2.5deg) translateY(-2px);
+  }
+}
+
+@utility animate-sway-soft {
+  animation: sway-soft 9s ease-in-out infinite;
+}
+
+@utility animate-pulse-soft {
+  animation: pulse-soft 2.6s ease-in-out infinite;
+}
+
+@utility animate-heartbeat {
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+@utility animate-ribbon-sway {
+  animation: ribbon-sway 5s ease-in-out infinite;
+  transform-origin: center top;
+}
+
+/* ---- "Handmade with a little magic" ---- */
+/* Petals drifting up through the hero, each one on its own timing. */
+@keyframes petal-drift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.7);
+  }
+  12% {
+    opacity: var(--petal-opacity, 0.5);
+  }
+  88% {
+    opacity: var(--petal-opacity, 0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--petal-drift, 40px), -105vh, 0) rotate(320deg) scale(1);
+  }
+}
+
+@utility animate-petal-drift {
+  animation: petal-drift var(--petal-duration, 17s) linear infinite;
+}
+
+/* Sparkles that twinkle on and off rather than pulsing in step. */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+}
+
+@utility animate-twinkle {
+  animation: twinkle var(--twinkle-duration, 3.2s) ease-in-out infinite;
+}
+
+/* A slow lilac aurora behind the hero — colour that never sits still. */
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(3%, -4%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-3%, 3%, 0) scale(1.06);
+  }
+}
+
+@utility animate-aurora {
+  animation: aurora 22s ease-in-out infinite;
+}
+
+/* Light sweeping across a button, like a satin ribbon catching the sun. */
+@keyframes shine-sweep {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+/* ---- Interaction utilities ---- */
+/* Card lift: rise, deepen the shadow, settle back. Used on every tile. */
+@utility hover-lift {
+  transition:
+    transform var(--duration-settle) var(--ease-soft),
+    box-shadow var(--duration-settle) var(--ease-soft),
+    border-color var(--duration-settle) var(--ease-soft);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+}
+
+/* Buttons/links: grow slightly on hover, give a little on press. */
+@utility press {
+  transition:
+    transform var(--duration-quick) var(--ease-petal),
+    box-shadow var(--duration-quick) var(--ease-soft),
+    background-color var(--duration-quick) var(--ease-soft),
+    color var(--duration-quick) var(--ease-soft),
+    filter var(--duration-quick) var(--ease-soft);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* Adds the ribbon-shine sweep to any .press button on hover. */
+@utility shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, white 55%, transparent),
+      transparent
+    );
+    transform: translateX(-120%) skewX(-18deg);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  &:hover::after {
+    animation: shine-sweep 900ms var(--ease-soft);
+  }
+}
+
+/* A 3D card tilt driven by pointer position (see use-tilt.ts). */
+@utility tilt {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    translateY(var(--tilt-lift, 0px));
+  transition: transform var(--duration-settle) var(--ease-soft);
+  transform-style: preserve-3d;
+}
+
+/* ---- Shadows ---- */
+@utility shadow-warm {
+  box-shadow: var(--shadow-warm);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ---- Link underline sweep ---- */
+@utility nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s var(--ease-soft);
+}
+
+.nav-link:hover::after,
+.nav-link[data-status="active"]::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* ---- Reading progress ---- */
+.scroll-progress {
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 120ms linear;
+}
+
+/* ---- Reduced motion ----
+   One contract for the whole site: visitors who ask for less motion get the
+   finished state immediately, never a half-played animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Purely decorative layers simply go away. */
+  .animate-petal-drift,
+  .animate-twinkle,
+  .animate-aurora {
+    display: none;
+  }
+}
