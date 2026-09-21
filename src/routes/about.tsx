@@ -91,7 +91,7 @@ function AboutPage() {
           <Photo
             picture={aboutCraft}
             placeholder={aboutCraftBlur}
-            alt="Hands crocheting a woolen flower at a cozy craft table with yarn and crochet hooks"
+            alt="A single handmade pink lily on a long green stem against a soft cream wall"
             sizes="(min-width: 1152px) 552px, (min-width: 768px) 48vw, 100vw"
             priority
             className="w-full rounded-[2.5rem] shadow-warm transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.02]"

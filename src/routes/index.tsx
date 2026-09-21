@@ -129,7 +129,7 @@ function HomePage() {
                 <Photo
                   picture={heroBouquet}
                   placeholder={heroBouquetBlur}
-                  alt="Handwoven woolen bouquet with terracotta and cream crocheted flowers wrapped in kraft paper"
+                  alt="Handmade bouquet of pink and lilac tulips with pink and white lilies, wrapped in pink paper and tied with a ribbon"
                   sizes="(min-width: 1152px) 552px, (min-width: 768px) 48vw, 100vw"
                   priority
                   className="w-full rounded-[2.5rem] shadow-warm"
